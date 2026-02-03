@@ -1,0 +1,54 @@
+{
+  "id": "af2a7492-aee9-4172-b98f-1d60747b104d",
+  "timestamp": "2026-02-03T22:28:25.220118",
+  "state": {
+    "raw_input": "hello\n",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "hello\n"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "hello\n"
+      }
+    },
+    "model_responses": [],
+    "all_claims": [],
+    "peer_reviews": [],
+    "agreement_clusters": [],
+    "scored_clusters": [],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

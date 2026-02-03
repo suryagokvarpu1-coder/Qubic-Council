@@ -1,0 +1,284 @@
+{
+  "id": "a023a886-90ba-4981-bf68-bf8ba62d9214",
+  "timestamp": "2026-02-03T23:20:16.735049",
+  "state": {
+    "raw_input": "What is the best frontend framework for a modern web application?",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "compare_options",
+      "domain": "web_dev",
+      "explicit_constraints": {},
+      "inferred_constraints": {},
+      "normalized_prompt": "What is the best frontend framework for building a modern web application?"
+    },
+    "locked_context": {
+      "locked_constraints": {},
+      "constraint_hash": "44136fa355b3",
+      "normalized_prompt_data": {
+        "intent": "compare_options",
+        "domain": "web_dev",
+        "explicit_constraints": {},
+        "inferred_constraints": {},
+        "normalized_prompt": "What is the best frontend framework for building a modern web application?"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "gpt-4o",
+        "response_text": "Choosing the best frontend framework for building a modern web application depends on several factors. Here is a brief overview of some popular frameworks, along with their strengths, to help you decide:\n\n1. **React**:\n   - **Strengths**: Component-based architecture, extensive ecosystem, strong community support, excellent for building complex and dynamic user interfaces, and backed by Facebook.\n   - **Use Cases**: Suitable for single-page applications (SPAs), mobile apps when used with React Native, and when you need a flexible structure.\n\n2. **Angular**:\n   - **Strengths**: Full-fledged framework with two-way data binding, dependency injection, comprehensive tooling provided by Google, and CLI for efficient development.\n   - **Use Cases**: Great for large-scale enterprise applications where a comprehensive solution is needed.\n\n3. **Vue.js**:\n   - **Strengths**: Simple learning curve, flexible integration capabilities, and a balance between React and Angular features with a smaller size.\n   - **Use Cases**: Ideal for both simple projects and complex applications, especially when rapid development is needed.\n\n4. **Svelte**:\n   - **Strengths**: Compiles at build time, resulting in faster performance, minimal boilerplate, and simplicity in state management.\n   - **Use Cases**: Good for projects where performance is critical, or if you want a simple and sleek experience.\n\n5. **Ember.js**:\n   - **Strengths**: Convention over configuration philosophy, strong conventions for a predictable project organization, and powerful CLI.\n   - **Use Cases**: Suitable for ambitious web applications where consistency and best practices are important.\n\n6. **Next.js** (built on top of React):\n   - **Strengths**: Server-side rendering, static site generation, API routes, and easy deployment with Vercel; excellent for performance-optimized applications.\n   - **Use Cases**: Perfect for SEO-focused and hybrid applications requiring both server-side and client-side rendering.\n\n7. **Nuxt.js** (built on Vue.js):\n   - **Strengths**: Similar to Next.js, optimized for SEO with server-side rendering and easy configuration.\n   - **Use Cases**: Fits projects similar to those of Next.js, with a focus on the Vue.js ecosystem.\n\n**Constraints Consideration**: Your specific constraints such as team expertise, time to market, scalability needs, and future maintenance should influence your choice.\n\nUltimately, there's no one-size-fits-all answer; each has unique advantages. Consider your project's specific requirements and team skillset to make the best choice.",
+        "token_count": 342
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "response_text": "Error: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 1292. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'provider_name': None}}, 'user_id': 'user_39ASClBv6rzA4QqxVcKWAtAZ3SO'}",
+        "token_count": 0
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "response_text": "Error: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-exp:free.', 'code': 404}, 'user_id': 'user_39ASClBv6rzA4QqxVcKWAtAZ3SO'}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "gpt-4o",
+        "claims": [
+          {
+            "claim_id": "7d395b04-fabb-46d7-ba4f-c24306427fb3",
+            "text": "Choosing a frontend framework for building a modern web application depends on several factors."
+          },
+          {
+            "claim_id": "22efaa6a-64de-4540-b6e4-24e0ca3e2166",
+            "text": "React has a component-based architecture."
+          },
+          {
+            "claim_id": "74d8a841-f9db-4ab7-909f-f48bad18dc3e",
+            "text": "React has an extensive ecosystem."
+          },
+          {
+            "claim_id": "70e81868-e29a-45d6-aabf-6600564d237e",
+            "text": "React has strong community support."
+          },
+          {
+            "claim_id": "ba8fcee1-85eb-417b-901b-005708e75f2e",
+            "text": "React is excellent for building complex and dynamic user interfaces."
+          },
+          {
+            "claim_id": "9e8ea495-b374-488b-8827-adacf00adf3d",
+            "text": "React is backed by Facebook."
+          },
+          {
+            "claim_id": "ed675a71-cd01-4ac1-9390-7ab067f89dd3",
+            "text": "React is suitable for single-page applications."
+          },
+          {
+            "claim_id": "b888670d-50be-4496-92ea-6df99ed60e16",
+            "text": "React is suitable for mobile apps when used with React Native."
+          },
+          {
+            "claim_id": "e9b50c0d-0a70-476b-85f0-ebd9153a0df3",
+            "text": "React is suitable when a flexible structure is needed."
+          },
+          {
+            "claim_id": "75d3b070-9662-40b4-8a0e-a7f1712121ec",
+            "text": "Angular has two-way data binding."
+          },
+          {
+            "claim_id": "a426f1a6-de49-481c-bcf0-bd869290615a",
+            "text": "Angular has dependency injection."
+          },
+          {
+            "claim_id": "b5c98ce7-d8ef-44e8-a86e-7db4f5cd900a",
+            "text": "Angular provides comprehensive tooling."
+          },
+          {
+            "claim_id": "9f635a16-45b3-4217-9bfb-7496c31429c0",
+            "text": "Angular is supported by Google."
+          },
+          {
+            "claim_id": "3416f96f-873a-4247-8ff7-f88bc67debd6",
+            "text": "Angular has a CLI for efficient development."
+          },
+          {
+            "claim_id": "c53a879a-6d44-4579-98e3-7f344cc0a000",
+            "text": "Angular is great for large-scale enterprise applications."
+          },
+          {
+            "claim_id": "e49d1b74-9bcc-4186-9b0b-d4ed636d3c09",
+            "text": "Vue.js has a simple learning curve."
+          },
+          {
+            "claim_id": "269a5862-09bb-4dbf-806b-b01226a481f5",
+            "text": "Vue.js has flexible integration capabilities."
+          },
+          {
+            "claim_id": "68becf3c-81cd-45a2-a8ad-b2adf2a883be",
+            "text": "Vue.js balances features of React and Angular with a smaller size."
+          },
+          {
+            "claim_id": "734f22f0-0d9e-475f-beaf-105c7bf58451",
+            "text": "Vue.js is ideal for simple projects."
+          },
+          {
+            "claim_id": "00278251-3111-4c75-bae3-6aed94803539",
+            "text": "Vue.js is ideal for complex applications."
+          }
+        ]
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "claims": [
+          {
+            "claim_id": "95686649-3737-4244-a909-ee00cf1a0d64",
+            "text": "The error code is 402."
+          },
+          {
+            "claim_id": "4e3daca7-63e1-443d-b55b-154129c18590",
+            "text": "The request requires more credits."
+          },
+          {
+            "claim_id": "8d3c9da9-bc22-4aa1-baaf-0dfdf89b5be4",
+            "text": "The request requires fewer max_tokens."
+          },
+          {
+            "claim_id": "b11a83eb-53f7-4c99-8923-e2f8d488a8a0",
+            "text": "The requested maximum number of tokens is 2048."
+          },
+          {
+            "claim_id": "7a9216c0-dca5-44c9-a8e3-f7ff5c37f6e5",
+            "text": "The user can only afford 1292 tokens."
+          },
+          {
+            "claim_id": "02ae4afe-dfca-4366-becd-2ea9547a31f6",
+            "text": "To increase credits, users can visit https://openrouter.ai/settings/credits."
+          },
+          {
+            "claim_id": "d04a459c-91f4-4103-a4c7-0d6b1620a5cc",
+            "text": "Users can upgrade to a paid account."
+          }
+        ]
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "claims": [
+          {
+            "claim_id": "d6a0d3f9-cc5a-4d69-8e8b-8aab5d5e9001",
+            "text": "The error code is 404."
+          },
+          {
+            "claim_id": "5d9482e3-1afd-42e6-ac16-a71692aeb9c9",
+            "text": "The error message states that no endpoints were found."
+          },
+          {
+            "claim_id": "1fb99436-8aee-4331-9199-eb3777370a48",
+            "text": "The specific endpoint that was not found is google/gemini-2.0-flash-exp:free."
+          },
+          {
+            "claim_id": "142fa2d6-758a-4f31-afdf-293bcc2b2dbf",
+            "text": "The user ID is user_39ASClBv6rzA4QqxVcKWAtAZ3SO."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "gpt-4o",
+        "accuracy_score": 8,
+        "insight_score": 7,
+        "constraint_adherence": 9,
+        "feedback": "The response provides a well-rounded overview of popular frameworks but could include more about specific use cases or trends in web development."
+      },
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "claude-3.5-sonnet",
+        "accuracy_score": 1,
+        "insight_score": 1,
+        "constraint_adherence": 1,
+        "feedback": "The response does not provide any useful information regarding frontend frameworks due to an error."
+      },
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "gemini-2.0-flash",
+        "accuracy_score": 1,
+        "insight_score": 1,
+        "constraint_adherence": 1,
+        "feedback": "This response is entirely unhelpful as it only displays an error message without any relevant content."
+      }
+    ],
+    "agreement_clusters": [
+      {
+        "cluster_id": "4e4d575f",
+        "canonical_claim": "Topic: Frontend Framework",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "gemini-2.0-flash"
+        ]
+      },
+      {
+        "cluster_id": "fa94de0b",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gemini-2.0-flash"
+        ],
+        "conflicting_models": [
+          "gpt-4o"
+        ]
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "4e4d575f",
+        "canonical_claim": "Topic: Frontend Framework",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "gemini-2.0-flash"
+        ],
+        "confidence_score": 0.64,
+        "reasons": [
+          "Moderate agreement: 2 models support this",
+          "Conflict detected: 1 models disagree",
+          "Peer review average: 4.5/10"
+        ]
+      },
+      {
+        "cluster_id": "fa94de0b",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gemini-2.0-flash"
+        ],
+        "conflicting_models": [
+          "gpt-4o"
+        ],
+        "confidence_score": 0.57,
+        "reasons": [
+          "Moderate agreement: 2 models support this",
+          "Conflict detected: 1 models disagree",
+          "Peer review average: 1.0/10"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

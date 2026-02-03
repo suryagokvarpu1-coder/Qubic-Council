@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+networkx
+numpy
+scikit-learn
+openai
+httpx

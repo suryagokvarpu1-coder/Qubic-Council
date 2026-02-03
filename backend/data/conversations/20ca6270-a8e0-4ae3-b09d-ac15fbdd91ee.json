@@ -1,0 +1,207 @@
+{
+  "id": "20ca6270-a8e0-4ae3-b09d-ac15fbdd91ee",
+  "timestamp": "2026-02-03T23:22:03.116318",
+  "state": {
+    "raw_input": "hello",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "greet",
+      "domain": "general",
+      "explicit_constraints": {},
+      "inferred_constraints": {},
+      "normalized_prompt": "Hello"
+    },
+    "locked_context": {
+      "locked_constraints": {},
+      "constraint_hash": "44136fa355b3",
+      "normalized_prompt_data": {
+        "intent": "greet",
+        "domain": "general",
+        "explicit_constraints": {},
+        "inferred_constraints": {},
+        "normalized_prompt": "Hello"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "gpt-4o",
+        "response_text": "Hello! It looks like you've mentioned \"Constraints\" but did not specify any. How can I assist you today? If you have any specific questions or need help with something, feel free to let me know!",
+        "token_count": 35
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "response_text": "Error: Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 1237. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'provider_name': None}}, 'user_id': 'user_39ASClBv6rzA4QqxVcKWAtAZ3SO'}",
+        "token_count": 0
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "response_text": "Error: Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-exp:free.', 'code': 404}, 'user_id': 'user_39ASClBv6rzA4QqxVcKWAtAZ3SO'}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "gpt-4o",
+        "claims": [
+          {
+            "claim_id": "31630843-cbfc-4d9f-a324-f0813b51ae32",
+            "text": "Hello! It looks like you've mentioned \"Constraints\" but did not specify any. How can I assist you today? If you have any specific questions or need help with something, feel free to let me know!"
+          }
+        ]
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "claims": [
+          {
+            "claim_id": "5cf2fd09-ccdc-4fcf-a4a1-b46dc43b6679",
+            "text": "The error code is 402."
+          },
+          {
+            "claim_id": "acd7756e-45c1-4817-8660-d775f035c96a",
+            "text": "The request requires more credits."
+          },
+          {
+            "claim_id": "21e0114c-1bea-41f2-9ca2-7777eae52b60",
+            "text": "The request requires fewer max_tokens."
+          },
+          {
+            "claim_id": "b86f29e3-c6c7-4b16-9c56-86b9f332404e",
+            "text": "The maximum tokens requested are 2048."
+          },
+          {
+            "claim_id": "ef3db2c6-5357-43a1-abec-51517e47707b",
+            "text": "The account can only afford 1237 tokens."
+          },
+          {
+            "claim_id": "ef9fcf7c-16f3-4b46-b17f-518f4a036bd4",
+            "text": "Users can visit a specific URL to increase credits."
+          },
+          {
+            "claim_id": "df086849-8f53-4816-8b37-fb1e6df357ea",
+            "text": "The specific URL to increase credits is 'https://openrouter.ai/settings/credits'."
+          },
+          {
+            "claim_id": "15873769-5def-44d3-a063-72244437876d",
+            "text": "The error message states that the request requires more credits or fewer max_tokens."
+          },
+          {
+            "claim_id": "a654e1b4-f874-4876-a0e2-fa4b8ef33968",
+            "text": "The user ID is 'user_39ASClBv6rzA4QqxVcKWAtAZ3SO'."
+          }
+        ]
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "claims": [
+          {
+            "claim_id": "d686aa30-2b07-4b1d-9761-34d47cc30dd9",
+            "text": "The error code is 404."
+          },
+          {
+            "claim_id": "cf0abdf4-a99f-4371-a793-b8ea5461d358",
+            "text": "The error message states that no endpoints are found for google/gemini-2.0-flash-exp:free."
+          },
+          {
+            "claim_id": "ac542921-276d-4547-a3e7-f26a43fe2313",
+            "text": "The user_id is user_39ASClBv6rzA4QqxVcKWAtAZ3SO."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "gpt-4o",
+        "accuracy_score": 8,
+        "insight_score": 7,
+        "constraint_adherence": 9,
+        "feedback": "This response accurately addresses the lack of constraints while prompting for further clarification."
+      },
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "claude-3.5-sonnet",
+        "accuracy_score": 3,
+        "insight_score": 2,
+        "constraint_adherence": 1,
+        "feedback": "This response is primarily an error message and does not engage with the user's greeting."
+      },
+      {
+        "reviewer_model": "gpt-4o-mini",
+        "reviewed_model": "gemini-2.0-flash",
+        "accuracy_score": 3,
+        "insight_score": 2,
+        "constraint_adherence": 1,
+        "feedback": "Similar to Response B, this is an error message that fails to respond meaningfully to the user's greeting."
+      }
+    ],
+    "agreement_clusters": [
+      {
+        "cluster_id": "b1d58a1c",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o",
+          "gemini-2.0-flash"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "494116c4",
+        "canonical_claim": "Topic: Frontend Framework",
+        "supporting_models": [
+          "claude-3.5-sonnet"
+        ],
+        "conflicting_models": [
+          "gpt-4o"
+        ]
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "b1d58a1c",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o",
+          "gemini-2.0-flash"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.88,
+        "reasons": [
+          "Strong agreement: 3 models support this",
+          "Peer review average: 4.0/10"
+        ]
+      },
+      {
+        "cluster_id": "494116c4",
+        "canonical_claim": "Topic: Frontend Framework",
+        "supporting_models": [
+          "claude-3.5-sonnet"
+        ],
+        "conflicting_models": [
+          "gpt-4o"
+        ],
+        "confidence_score": 0.44,
+        "reasons": [
+          "Single model claim - lower confidence",
+          "Conflict detected: 1 models disagree",
+          "Peer review average: 2.0/10"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}
