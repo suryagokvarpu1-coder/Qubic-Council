@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Key, Save, Check, AlertCircle, Loader2 } from 'lucide-react';
 import axios from 'axios';
 
-const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export default function SettingsModal({ onClose }) {
     const [openrouterKey, setOpenrouterKey] = useState('');
@@ -217,11 +217,11 @@ export default function SettingsModal({ onClose }) {
                     onClick={handleSave}
                     className="btn-primary"
                     disabled={loading}
-                    style={{ 
-                        width: '100%', 
-                        display: 'flex', 
-                        justifyContent: 'center', 
-                        alignItems: 'center', 
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         gap: '0.5rem',
                         opacity: loading ? 0.7 : 1
                     }}
@@ -241,9 +241,9 @@ export default function SettingsModal({ onClose }) {
                     )}
                 </button>
 
-                <p style={{ 
-                    fontSize: '0.75rem', 
-                    color: 'var(--text-secondary)', 
+                <p style={{
+                    fontSize: '0.75rem',
+                    color: 'var(--text-secondary)',
                     marginTop: '1rem',
                     textAlign: 'center',
                     opacity: 0.7

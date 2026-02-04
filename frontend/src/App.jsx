@@ -9,7 +9,7 @@ import SettingsModal from './components/SettingsModal';
 import HistoryPanel from './components/HistoryPanel';
 import { Layout, Settings, History, X } from 'lucide-react';
 
-const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 function App() {
   const [graphState, setGraphState] = useState(null);
