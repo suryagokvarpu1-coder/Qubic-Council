@@ -455,7 +455,12 @@
 
     <script>
         // ===== CONFIGURATION =====
-        const API_BASE = 'http://localhost:8000';
+        // UPDATE THIS URL AFTER DEPLOYING BACKEND (e.g. https://qubic-council.onrender.com)
+        const PROD_API = 'https://replace-with-your-backend-url.com';
+
+        const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+            ? 'http://localhost:8000'
+            : PROD_API;
         const ALL_MODELS = [
             { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', color: '#10a37f' },
             { id: 'claude-3.5-sonnet', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', color: '#cc785c' },

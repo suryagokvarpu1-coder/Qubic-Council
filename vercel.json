@@ -1,0 +1,13 @@
+{
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "/loadingpage.html"
+        },
+        {
+            "source": "/mainpage",
+            "destination": "/mainpage.html"
+        }
+    ],
+    "cleanUrls": true
+}

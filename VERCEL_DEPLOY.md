@@ -1,57 +1,40 @@
 # Vercel Deployment Guide
 
-Since your application has a separate Backend (Python) and Frontend (React), the deployment strategy involves two parts.
+You have two versions of the frontend available given the codebase structure.
 
-## ⚠️ Important Warning
-**The Backend (Consensus Engine) may timeout on Vercel.**
-Vercel's Hobby plan has a **10-second timeout** for serverless functions. Your consensus engine (querying 4 models, peer review, etc.) typically takes 15-40 seconds.
-**Recommendation:** Deploy the Backend on **Render** or **Railway** (which allow longer execution times) and the Frontend on **Vercel**.
+## Option A: Deploy "Quantum Consensus" (3D Interface) - RECOMMENDED
+This uses the animated 3D loading page and the main HTML interface you have been working on.
 
----
+**1. Deploy Backend (Render/Railway)**
+   - Deploy the `backend` folder to Render.com (or similar).
+   - Get your Backend URL (e.g., `https://qubic-council.onrender.com`).
+   - **Update your code**: Open `mainpage.html` (line ~432) and replace `https://replace-with-your-backend-url.com` with your actual Backend URL.
+   - Commit and push changes.
 
-## Part 1: Deploy Backend (Render/Railway)
+**2. Deploy Frontend (Vercel)**
+   - **Root Directory**: `.` (Project Root) -- Leave it as the default `./`
+   - **Framework Preset**: Other (or None) -- It's a static site
+   - **Build Command**: (Leave empty)
+   - **Output Directory**: (Leave empty)
+   - **Env Variables**: None needed (config is in `mainpage.html`)
 
-We recommend **Render** for the backend.
-
-1. Push your code to GitHub.
-2. Sign up at [render.com](https://render.com).
-3. Create a **New Web Service**.
-4. Connect your GitHub repo.
-5. **Root Directory**: `backend`
-6. **Build Command**: `pip install -r requirements.txt`
-7. **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-8. **Environment Variables**:
-   - `PYTHON_VERSION`: `3.11` (optional but recommended)
-   - `OPENROUTER_API_KEY`: (Your key)
-   - `GROQ_API_KEY`: (Your key)
-9. Deploy! Copy the **Service URL** (e.g., `https://qubic-council.onrender.com`).
+   *Note: Vercel might try to detect the backend python files. If it asks, ensure you are deploying as a Static Site or just "Web".*
 
 ---
 
-## Part 2: Deploy Frontend (Vercel)
+## Option B: Deploy React Dashboard
+This uses the modern React application located in the `frontend` folder.
 
-Now deploy the UI and connect it to the backend.
+**1. Deploy Backend** (Same as above)
 
-1. Go to [vercel.com](https://vercel.com) and "Add New Project".
-2. Import your GitHub repository (`Qubic-Council`).
-3. **Configure Project**:
+**2. Deploy Frontend (Vercel)**
+   - **Root Directory**: `frontend` (You must select this folder)
    - **Framework Preset**: Vite
-   - **Root Directory**: `frontend`  <-- **IMPORTANT** (Click "Edit" next to Root Directory)
-   - **Build Command**: `npm run build` (Default)
-   - **Output Directory**: `dist` (Default)
-4. **Environment Variables**:
-   Add the following variable:
-   - **Name**: `VITE_API_BASE_URL`
-   - **Value**: Your Backend URL from Part 1 (e.g., `https://qubic-council.onrender.com`)
-     *(Do not include a trailing slash)*
-5. Click **Deploy**.
+   - **Env Variables**: `VITE_API_BASE_URL` = Your Backend URL
 
-## Part 3: Deploying "Whole App" on Vercel (Advanced/Not Recommended)
+---
 
-If you strictly want to deploy **everything** on Vercel (knowing it might timeout):
-
-1. **Root Directory**: `.` (Project Root)
-2. You must create a `vercel.json` in the root (created by AI, see below).
-3. You must restructure the backend to match Vercel's Serverless Function expectations (requires creating an `api/` folder).
-
-**We strongly suggest the Render + Vercel approach.**
+## ⚠️ Important Note regarding Backend
+The "Consensus Engine" backend performs heavy AI tasks (querying 4 models, peer review).
+**DO NOT deploy the backend to Vercel Serverless Functions.**
+They will timeout after 10 seconds. Use **Render**, **Railway**, or **Heroku**.
