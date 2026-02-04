@@ -153,22 +153,33 @@ Respond with JSON:
   "uncertain_areas": ["..."]
 }}"""
 
-    try:
-        if client:
-            model = "openai/gpt-4o" if provider_id == PROVIDER_OPENROUTER else available_models[0]["id"]
-            if provider_id == PROVIDER_GROQ: model = "llama-3.3-70b-versatile" # Prefer strongest 
+    # Try primary synthesis with JSON mode
+    if client:
+        try:
+            # Select best available model for synthesis
+            if provider_id == PROVIDER_OPENROUTER:
+                model = "openai/gpt-4o-mini"  # Use mini for reliability
+            elif provider_id == PROVIDER_GROQ:
+                model = "llama-3.3-70b-versatile"
+            else:
+                model = available_models[0]["id"] if available_models else "gpt-3.5-turbo"
+            
+            logger.info(f"Synthesis using model: {model} via {provider_id}")
             
             response = await client.chat.completions.create(
                 model=model,
                 messages=[{"role": "user", "content": synthesis_prompt}],
                 response_format={"type": "json_object"}
             )
-            result = json.loads(response.choices[0].message.content)
             
+            raw_content = response.choices[0].message.content
+            logger.info(f"Synthesis raw response: {raw_content[:200]}...")
+            
+            result = json.loads(raw_content)
             confidence = sum(s.confidence_score for s in scored) / len(scored) if scored else 0.5
             
             return FinalConsensus(
-                final_answer=result.get("final_answer", "Synthesis failed"),
+                final_answer=result.get("final_answer", "Synthesis completed but no answer extracted."),
                 confidence=round(confidence, 2),
                 uncertain_areas=result.get("uncertain_areas", []) + [s.canonical_claim for s in uncertain],
                 reasoning_trace=[
@@ -177,12 +188,33 @@ Respond with JSON:
                     {"step": "synthesis", "details": f"Chairman ({model}) synthesized answer"}
                 ]
             )
-    except Exception as e:
-        logger.error(f"Synthesis error: {e}")
+        except json.JSONDecodeError as je:
+            logger.error(f"JSON parse error in synthesis: {je}")
+            # Fallback: Try to extract answer without JSON parsing
+            try:
+                raw_text = response.choices[0].message.content
+                # Just use raw text as the answer
+                confidence = sum(s.confidence_score for s in scored) / len(scored) if scored else 0.5
+                return FinalConsensus(
+                    final_answer=raw_text[:2000],
+                    confidence=round(confidence, 2),
+                    uncertain_areas=["JSON parsing failed, raw response used"],
+                    reasoning_trace=[{"step": "synthesis", "details": "Fallback: raw text extraction"}]
+                )
+            except:
+                pass
+        except Exception as e:
+            logger.error(f"Synthesis error: {e}")
+            import traceback
+            traceback.print_exc()
+    
+    # Final fallback: Combine model responses manually
+    logger.warning("Using manual fallback synthesis")
+    combined = " | ".join([f"{r.model_id}: {r.response_text[:200]}" for r in responses[:2]])
     
     return FinalConsensus(
-        final_answer="The council was unable to reach a synthesis. Please review individual model responses.",
-        confidence=0.3,
-        uncertain_areas=["Synthesis failed"],
-        reasoning_trace=[{"step": "error", "details": "Synthesis failed"}]
+        final_answer=f"Council Summary: {combined}" if combined else "The council was unable to reach a synthesis. Please review individual model responses.",
+        confidence=0.4,
+        uncertain_areas=["Automated synthesis failed - manual review recommended"],
+        reasoning_trace=[{"step": "error", "details": "Synthesis failed, using concatenated responses"}]
     )

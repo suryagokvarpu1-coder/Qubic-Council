@@ -1,0 +1,259 @@
+{
+  "id": "afda249e-8f34-4478-a181-d3a628eaecba",
+  "timestamp": "2026-02-04T10:24:48.651796",
+  "state": {
+    "raw_input": "wht is java",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "explain_concept",
+      "domain": "programming_languages",
+      "explicit_constraints": {},
+      "inferred_constraints": {},
+      "normalized_prompt": "What is Java?"
+    },
+    "locked_context": {
+      "locked_constraints": {},
+      "constraint_hash": "44136fa355b3",
+      "normalized_prompt_data": {
+        "intent": "explain_concept",
+        "domain": "programming_languages",
+        "explicit_constraints": {},
+        "inferred_constraints": {},
+        "normalized_prompt": "What is Java?"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "response_text": "Java is a high-level, class-based, object-oriented programming language widely used for building application software. It's designed to have as few implementation dependencies as possible, supporting the concept of \"write once, run anywhere,\" meaning that compiled Java code can run on all platforms that support Java without the need for recompilation. Java is commonly used for developing web applications, mobile apps, enterprise software, and large systems. It is known for its portability, robustness, security features, and strong community support.\n\nConstraints that might be relevant to Java could include:\n- Platform constraints: Java applications can run on any device that has the Java Virtual Machine (JVM) installed.\n- Security constraints: Java includes a security manager to control access to system resources.\n- Performance constraints: Java performance can sometimes be an issue due to its nature as an interpreted language running on the JVM.\n- Memory constraints: Java requires a runtime environment (JVM) which might add overhead and affect resource usage.\n- Dependency constraints: Java applications often require external libraries and frameworks to accomplish specific tasks.",
+        "token_count": 173
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "response_text": "Error (openrouter): Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 1286. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'provider_name': None}}, 'user_id': 'user_39Auv0KK88jHgnPM5CsAwslSrDc'}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "claims": [
+          {
+            "claim_id": "4053dbac-8646-4c8a-8e1f-052efdf11454",
+            "text": "Java is a high-level programming language."
+          },
+          {
+            "claim_id": "e68d601a-838a-4685-a807-acd6d3bb05df",
+            "text": "Java is a class-based programming language."
+          },
+          {
+            "claim_id": "27349124-7765-4c5e-9d7d-38ca52e8d63c",
+            "text": "Java is an object-oriented programming language."
+          },
+          {
+            "claim_id": "2cebfed4-049a-432e-be51-d3aa10576420",
+            "text": "Java is widely used for building application software."
+          },
+          {
+            "claim_id": "98da780b-d0bb-4001-b9ff-21b93c39feda",
+            "text": "Java supports the concept of 'write once, run anywhere.'"
+          },
+          {
+            "claim_id": "df22267a-990f-4dec-b79b-a770acfc828a",
+            "text": "Compiled Java code can run on all platforms that support Java."
+          },
+          {
+            "claim_id": "ba8f9f3f-16fc-4014-b561-80cfa1b0b8c6",
+            "text": "Java does not require recompilation to run on different platforms."
+          },
+          {
+            "claim_id": "57830710-6d49-476c-babc-2c5aa70a90a1",
+            "text": "Java is commonly used for developing web applications."
+          },
+          {
+            "claim_id": "8938305f-6a76-452d-8bee-c95095d7c68d",
+            "text": "Java is commonly used for developing mobile applications."
+          },
+          {
+            "claim_id": "927759fa-1f73-4d9d-92d9-7f161464b66d",
+            "text": "Java is commonly used for developing enterprise software."
+          },
+          {
+            "claim_id": "71dbf84e-62af-4dd4-a936-717d7d4eda47",
+            "text": "Java is commonly used for developing large systems."
+          },
+          {
+            "claim_id": "8852fc67-654f-462f-8b75-2b0323921c9a",
+            "text": "Java is known for its portability."
+          },
+          {
+            "claim_id": "76a9d3d8-4c47-49ba-a03c-c5a79b18deea",
+            "text": "Java is known for its robustness."
+          },
+          {
+            "claim_id": "bb17e7d6-d9cb-40b7-a714-e264d82ea3a5",
+            "text": "Java is known for its security features."
+          },
+          {
+            "claim_id": "6daf3a47-4097-4b68-ad9f-b37be89c0d66",
+            "text": "Java has strong community support."
+          },
+          {
+            "claim_id": "9fdeaa06-cbe8-4adc-9cc9-76d1735eef73",
+            "text": "Java applications can run on any device that has the Java Virtual Machine (JVM) installed."
+          },
+          {
+            "claim_id": "26a8130e-37d5-4382-9ca6-b3d77715e8a6",
+            "text": "Java includes a security manager to control access to system resources."
+          },
+          {
+            "claim_id": "4d27c875-d3e4-4c62-b97b-557bb72c402a",
+            "text": "Java performance can sometimes be an issue due to its interpreted nature."
+          },
+          {
+            "claim_id": "40152895-58e3-43f1-aed9-33cdbca3b3a3",
+            "text": "Java requires a runtime environment (JVM)."
+          },
+          {
+            "claim_id": "11dc465f-9048-4d7d-81ff-e10b50110673",
+            "text": "The JVM can add overhead and affect resource usage."
+          }
+        ]
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "claims": [
+          {
+            "claim_id": "1d8e86b5-b990-45b6-bb37-5e629101ecc8",
+            "text": "The error code is 402."
+          },
+          {
+            "claim_id": "184a7288-f723-4067-95f6-e856b93aba0a",
+            "text": "The request requires more credits than the user has."
+          },
+          {
+            "claim_id": "9280214a-d5f7-4051-a36a-3fb1c982cb53",
+            "text": "The user requested up to 2048 tokens."
+          },
+          {
+            "claim_id": "42ab41d6-88e4-41e8-82ec-3bbf47dd526b",
+            "text": "The user can only afford 1286 tokens."
+          },
+          {
+            "claim_id": "d72e5521-4180-468c-835c-f087ce5143eb",
+            "text": "Users can visit https://openrouter.ai/settings/credits to upgrade to a paid account."
+          },
+          {
+            "claim_id": "64f792fe-f3bb-40cd-b306-ada5b7e92d92",
+            "text": "The user ID is user_39Auv0KK88jHgnPM5CsAwslSrDc."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "30b555b7",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "0e9c6a70",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "91213c94",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "9409a28c",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "30b555b7",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.65,
+        "reasons": [
+          "Moderate agreement: 2 models support this"
+        ]
+      },
+      {
+        "cluster_id": "0e9c6a70",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.65,
+        "reasons": [
+          "Moderate agreement: 2 models support this"
+        ]
+      },
+      {
+        "cluster_id": "91213c94",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.65,
+        "reasons": [
+          "Moderate agreement: 2 models support this"
+        ]
+      },
+      {
+        "cluster_id": "9409a28c",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}
