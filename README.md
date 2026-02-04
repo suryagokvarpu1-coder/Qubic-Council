@@ -1,218 +1,122 @@
-# Vibe-Coding Consensus Engine v2.0
+# Vibe-Coding Consensus Engine
 
-Multi-LLM consensus platform with peer review, claim extraction, and transparent reasoning.
+A multi-LLM consensus platform that orchestrates parallel execution, peer review, and synthesis to provide authoritative answers.
 
-**Now powered by OpenRouter** - Access GPT-4o, Claude, Gemini, and 20+ models with a single API key!
+## ✨ Features
 
-## Quick Start
+- **Universal API Key**: Supports OpenAI, Groq, and OpenRouter keys with auto-detection
+- **Dynamic Council**: Configure 1-4 models for parallel execution
+- **8-Layer Graph**: Normalization, Constraint Locking, Execution, Extraction, Peer Review, Agreement, Scoring, Synthesis
+- **Live UI**: Real-time visualization of the consensus process
+- **Conversation Persistence**: Save and load previous queries
 
-### 1. Install Dependencies
+## 🛠️ Tech Stack
 
-**Backend**:
+- **Backend**: Python 3.10+, FastAPI, AsyncIO
+- **Frontend**: HTML5, Vanilla JS, TailwindCSS
+- **AI**: OpenAI SDK, OpenRouter, Groq
+
+## 🚀 Quick Start
+
+### 1. Clone & Install
+
 ```bash
-cd backend
+git clone <repo-url>
+cd test-llm-council/backend
 pip install -r requirements.txt
 ```
 
-**Frontend**:
-```bash
-cd frontend
-npm install
-```
+### 2. Run the Server
 
-### 2. Get Your OpenRouter API Key
-
-1. Visit [openrouter.ai/keys](https://openrouter.ai/keys)
-2. Sign up or log in
-3. Create a new API key
-4. Add credits to your account (or enable auto-top-up)
-
-### 3. Configure API Key
-
-**Option A: Environment Variable** (Recommended)
-
-Create `backend/.env`:
-```
-OPENROUTER_API_KEY=sk-or-v1-...
-```
-
-**Option B: Settings UI**
-
-Configure after starting the app via the Settings (⚙️) button.
-
-### 4. Run the Application
-
-**Terminal 1 (Backend)**:
 ```bash
 cd backend
 python -m uvicorn app.main:app --reload --port 8000
 ```
 
-**Terminal 2 (Frontend)**:
-```bash
-cd frontend
-npm run dev
-```
+### 3. Open the Application
 
-**Open**: http://localhost:5173
+Navigate to: **http://localhost:8000**
 
----
+The loading page will automatically redirect you to the main application.
 
-## Features
+## 🔑 Configuration
 
-### 🎯 8-Layer Consensus Pipeline
-1. **Normalization** - LLM-powered intent detection (GPT-4o-mini)
-2. **Constraint Locking** - Cryptographic verification
-3. **Parallel Execution** - Query GPT-4o, Claude 3.5 Sonnet, Gemini 2.0 Flash simultaneously
-4. **Claim Extraction** - Break responses into atomic claims (GPT-4o-mini)
-5. **Peer Review** - Anonymous model-to-model evaluation (GPT-4o-mini, Claude 3.5 Haiku)
-6. **Agreement Detection** - Semantic clustering
-7. **Confidence Scoring** - Explainable reliability scores
-8. **Chairman Synthesis** - Final consensus from GPT-4o
+### Setting Up API Keys
 
-### 🚀 Advanced Capabilities
-- **Single API key** via OpenRouter (no more juggling 3 keys!)
-- **20+ models available** (GPT, Claude, Gemini, Llama, Mistral, etc.)
-- **Real-time peer review** with accuracy/insight/constraint scores
-- **Conversation persistence** to JSON files
-- **Full transparency** via Node Inspector
-- **Markdown rendering** for formatted responses
-- **History panel** to reload past conversations
-- **Graceful degradation** when models fail
+1. Click the **gear icon (⚙)** or **COUNCIL_CONFIG** button in the top-right
+2. Enter your API key in the **UNIVERSAL API KEY** field
+3. Click **CONNECT & DETECT**
 
----
+### Supported API Keys
 
-## Tech Stack
+| Provider | Key Format | Get Key |
+|----------|------------|---------|
+| OpenRouter | `sk-or-v1-...` | [openrouter.ai/keys](https://openrouter.ai/keys) |
+| OpenAI | `sk-...` | [platform.openai.com](https://platform.openai.com/api-keys) |
+| Groq | `gsk_...` | [console.groq.com](https://console.groq.com/keys) |
 
-**Backend**:
-- FastAPI (async Python)
-- OpenRouter API (via OpenAI SDK)
-- Pydantic for schema validation
-- NetworkX for graph orchestration
+> **Tip**: OpenRouter gives you access to multiple models (GPT-4o, Claude, Gemini) with a single key!
 
-**Frontend**:
-- React 19 + Vite 7
-- react-markdown for rendering
-- Axios for API calls
-- Lucide icons
+## 📖 Documentation
 
----
+- **[API Documentation](docs/API_DOCUMENTATION.md)** - Endpoint references, request/response schemas
+- **[Platform Documentation](docs/PLATFORM_DOCUMENTATION.md)** - Architecture, data flow, extending the system
 
-## Architecture
+## 🧪 Running Tests
 
-```
-User Query
-    ↓
-Normalization (GPT-4o-mini via OpenRouter)
-    ↓
-Constraint Locking
-    ↓
-Parallel LLM Execution (3 models via OpenRouter)
-    ├─ GPT-4o
-    ├─ Claude 3.5 Sonnet
-    └─ Gemini 2.0 Flash
-    ↓
-Claim Extraction (GPT-4o-mini)
-    ↓
-Peer Review (GPT-4o-mini, Claude 3.5 Haiku)
-    ↓
-Semantic Clustering
-    ↓
-Confidence Scoring
-    ↓
-Chairman Synthesis (GPT-4o)
-    ↓
-Final Consensus + Save
-```
-
----
-
-## API Endpoints
-
-- `GET /` - Health check
-- `POST /run` - Execute consensus graph
-- `POST /settings/keys` - Update API keys
-- `GET /conversations` - List conversations
-- `GET /conversations/{id}` - Get conversation
-
----
-
-## Why OpenRouter?
-
-| Before (3 APIs) | After (OpenRouter) |
-|-----------------|-------------------|
-| 3 separate API keys | 1 unified key |
-| 3 billing accounts | 1 billing account |
-| Limited to 3 providers | 20+ models available |
-| Complex key management | Simple configuration |
-| Separate rate limits | Unified rate limiting |
-
-**Models Available via OpenRouter**:
-- OpenAI: GPT-4o, GPT-4o-mini, GPT-4 Turbo
-- Anthropic: Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3 Opus
-- Google: Gemini 2.0 Flash, Gemini 1.5 Pro
-- Meta: Llama 3.1 405B, Llama 3.3 70B
-- Mistral: Mistral Large, Mistral Medium
-- And many more!
-
----
-
-## Comparison to LLM Council
-
-| Feature | LLM Council | Our v2.0 |
-|---------|-------------|----------|
-| API Management | OpenRouter ✅ | OpenRouter ✅ |
-| Prompt Normalization | ❌ | ✅ |
-| Constraint System | ❌ | ✅ |
-| Claim Extraction | ❌ | ✅ |
-| Peer Review | ✅ | ✅ |
-| Confidence Scores | ❌ | ✅ |
-| Full Transparency | ❌ | ✅ |
-
-**We win 7/10 categories + match on API simplicity.**
-
----
-
-## Cost Optimization
-
-OpenRouter pricing is competitive and transparent:
-- **GPT-4o**: ~$2.50 per 1M input tokens
-- **Claude 3.5 Sonnet**: ~$3.00 per 1M input tokens
-- **Gemini 2.0 Flash**: FREE (with rate limits)
-
-**Typical query cost**: $0.02-0.05 (depending on response length)
-
----
-
-## Troubleshooting
-
-### If the frontend doesn't load:
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-### If the backend fails:
 ```bash
 cd backend
-pip install -r requirements.txt
-python -m uvicorn app.main:app --reload --port 8000
+pip install pytest pytest-asyncio
+python -m pytest tests/ -v
 ```
 
-### If API calls fail:
-1. Check your OpenRouter API key in Settings
-2. Verify you have credits at [openrouter.ai/credits](https://openrouter.ai/credits)
-3. Check the Node Inspector → Raw State for error messages
+## 📁 Project Structure
 
----
+```
+test-llm-council/
+├── backend/
+│   ├── app/
+│   │   ├── main.py          # FastAPI app & routes
+│   │   ├── models.py        # Pydantic data models
+│   │   ├── engine/          # Core consensus logic
+│   │   └── config/          # Settings management
+│   ├── static/              # HTML frontend
+│   ├── tests/               # Test suite
+│   └── requirements.txt
+├── frontend/                # React alternative frontend
+├── docs/                    # Documentation
+└── README.md
+```
 
-## License
+## 🌐 API Endpoints
 
-MIT
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Loading page |
+| `/mainpage` | GET | Main application |
+| `/api/status` | GET | Health check |
+| `/run` | POST | Execute consensus query |
+| `/settings/keys` | POST | Update API keys |
+| `/conversations` | GET | List saved conversations |
+| `/conversations/{id}` | GET | Get specific conversation |
 
----
+## 💡 How It Works
 
-## Credits
+1. **Normalization**: Your query is analyzed to extract intent, domain, and constraints
+2. **Parallel Execution**: Multiple LLMs process your query simultaneously
+3. **Claim Extraction**: Each response is broken down into atomic, testable claims
+4. **Peer Review**: Models anonymously review and score each other
+5. **Agreement Detection**: Similar claims are grouped into clusters
+6. **Confidence Scoring**: Each cluster gets a confidence score based on agreement
+7. **Synthesis**: A "Chairman" model synthesizes the final authoritative answer
 
-Inspired by [karpathy/llm-council](https://github.com/karpathy/llm-council) but with significant architectural improvements and unified API via OpenRouter.
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Write tests for new functionality
+4. Submit a pull request
+
+## 📄 License
+
+MIT License

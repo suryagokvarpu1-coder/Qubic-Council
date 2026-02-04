@@ -1,0 +1,144 @@
+{
+  "id": "6e76a0e1-67ee-4e90-b560-3f69cce29834",
+  "timestamp": "2026-02-04T01:48:08.938892",
+  "state": {
+    "raw_input": "hello",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "hello"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "hello"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "gpt-4o",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "llama-3.3-70b-groq",
+        "response_text": "Hello. It's nice to meet you. Is there something I can help you with or would you like to chat?",
+        "token_count": 20
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "gpt-4o",
+        "claims": [
+          {
+            "claim_id": "7d8f56ab-59e6-4752-914d-a39106655bc2",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "claims": [
+          {
+            "claim_id": "fdb7c9b9-45ef-4500-8662-0da816852a80",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "gemini-2.0-flash",
+        "claims": [
+          {
+            "claim_id": "cc34a62e-5a47-44ae-874c-4980393772b9",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "llama-3.3-70b-groq",
+        "claims": [
+          {
+            "claim_id": "2f61ce06-98df-4c0c-b11d-4e2b90ae0de4",
+            "text": "It's nice to meet you"
+          },
+          {
+            "claim_id": "5034c297-da13-4801-814b-7c2e428cae63",
+            "text": "Is there something I can help you with or would you like to chat?"
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "69f02b21",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "llama-3.3-70b-groq",
+          "gemini-2.0-flash",
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "69f02b21",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "llama-3.3-70b-groq",
+          "gemini-2.0-flash",
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.8,
+        "reasons": [
+          "Strong agreement: 4 models support this"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

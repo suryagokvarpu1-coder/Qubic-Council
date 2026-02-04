@@ -1,0 +1,97 @@
+{
+  "id": "d35f570c-58a2-47ac-9a48-76ff7224349d",
+  "timestamp": "2026-02-04T01:33:44.699839",
+  "state": {
+    "raw_input": "hi",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "hi"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "hi"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "gpt-4o",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "gpt-4o",
+        "claims": [
+          {
+            "claim_id": "b8a92a62-8194-46b2-990b-f635ce1d85f2",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "20c22ed2",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "claude-3.5-sonnet"
+        ]
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "20c22ed2",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "claude-3.5-sonnet"
+        ],
+        "confidence_score": 0.4,
+        "reasons": [
+          "Single model claim - lower confidence",
+          "Conflict detected: 1 models disagree"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

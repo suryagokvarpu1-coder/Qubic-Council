@@ -1,0 +1,116 @@
+{
+  "id": "26ce9681-199a-4e4c-a599-dd711ac2aa12",
+  "timestamp": "2026-02-04T09:10:44.547233",
+  "state": {
+    "raw_input": "who is the president of india",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "who is the president of india"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "who is the president of india"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "system",
+        "response_text": "No API keys configured. Please configure keys in Settings.",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "system",
+        "claims": [
+          {
+            "claim_id": "95810126-2d81-4f08-8eae-8d341d44d433",
+            "text": "No API keys configured"
+          },
+          {
+            "claim_id": "30c05f93-f8c6-4b64-aee9-b9a482d55564",
+            "text": "Please configure keys in Settings."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "40cdb90a",
+        "canonical_claim": "Topic: Backend",
+        "supporting_models": [
+          "system"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "b4971c52",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "system"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "40cdb90a",
+        "canonical_claim": "Topic: Backend",
+        "supporting_models": [
+          "system"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      },
+      {
+        "cluster_id": "b4971c52",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "system"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

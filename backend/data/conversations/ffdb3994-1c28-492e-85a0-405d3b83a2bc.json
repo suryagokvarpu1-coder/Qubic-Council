@@ -1,0 +1,124 @@
+{
+  "id": "ffdb3994-1c28-492e-85a0-405d3b83a2bc",
+  "timestamp": "2026-02-04T08:21:20.658058",
+  "state": {
+    "raw_input": "hello",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "hello"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "hello"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "response_text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "response_text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "response_text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "claims": [
+          {
+            "claim_id": "df223644-dc66-4aed-a0f3-ced81ef52537",
+            "text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "claims": [
+          {
+            "claim_id": "69000f7b-98fc-454d-9c3c-28e5bd1f0327",
+            "text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "claims": [
+          {
+            "claim_id": "6cdb15f4-272f-426b-9a7f-2dc5ae98abab",
+            "text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "b6627349",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)",
+          "Gemini 2.0 Flash (OR)"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "b6627349",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)",
+          "Gemini 2.0 Flash (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.8,
+        "reasons": [
+          "Strong agreement: 3 models support this"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

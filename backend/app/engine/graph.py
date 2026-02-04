@@ -2,17 +2,10 @@ from app.models import GraphState
 import asyncio
 import logging
 
-from app.nodes import (
-    normalize_prompt,
-    lock_constraints,
-    execute_parallel_models,
-    extract_claims,
-    conduct_peer_review,
-    detect_agreement,
-    score_clusters,
-    synthesize_consensus,
-    save_conversation
-)
+from app.engine.normalization import normalize_prompt, lock_constraints
+from app.engine.execution import execute_parallel_models, extract_claims, conduct_peer_review
+from app.engine.synthesis import detect_agreement, score_clusters, synthesize_consensus
+from app.engine.persistence import save_conversation
 
 class AntigravityEngine:
     """
@@ -22,9 +15,10 @@ class AntigravityEngine:
         self.logger = logging.getLogger("AntigravityEngine")
         self.logger.setLevel(logging.INFO)
 
-    async def run(self, raw_input: str) -> GraphState:
+    async def run(self, raw_input: str, model_count: int = 4) -> GraphState:
         """
         Executes the full graph flow with peer review.
+        model_count: Number of models to query (1-4)
         """
         state = GraphState(raw_input=raw_input)
         
@@ -39,9 +33,9 @@ class AntigravityEngine:
             state.locked_context = await lock_constraints(state.normalized)
             print(f"    Hash: {state.locked_context.constraint_hash}")
             
-            # Layer 3: Parallel Execution
-            print("--- Layer 3: Parallel Execution ---")
-            state.model_responses = await execute_parallel_models(state.locked_context)
+            # Layer 3: Parallel Execution (with dynamic model count)
+            print(f"--- Layer 3: Parallel Execution ({model_count} models) ---")
+            state.model_responses = await execute_parallel_models(state.locked_context, model_count=model_count)
             print(f"    Got {len(state.model_responses)} responses")
             
             # Layer 4: Claim Extraction (LLM-powered)

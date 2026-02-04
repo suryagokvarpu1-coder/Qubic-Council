@@ -1,0 +1,242 @@
+{
+  "id": "a87eaff0-da45-4e75-8fb1-0e9dbefbb4ef",
+  "timestamp": "2026-02-04T09:02:47.585815",
+  "state": {
+    "raw_input": "who is the prime minister of india",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "who is the prime minister of india"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "who is the prime minister of india"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "response_text": "As of my last update, the Prime Minister of India is Narendra Modi. He has held the position since May 26, 2014, after leading his party, the Bharatiya Janata Party (BJP), to victory in the general elections. Narendra Modi has played a significant role in Indian politics and has been involved in various domestic and international initiatives since his tenure began. Please verify with a reliable source to ensure this information is still current, as political positions can change.",
+        "token_count": 79
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "response_text": "Error (openrouter): Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 1333. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'provider_name': None}}, 'user_id': 'user_39Auv0KK88jHgnPM5CsAwslSrDc'}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "response_text": "Error (openrouter): Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-exp:free.', 'code': 404}, 'user_id': 'user_39Auv0KK88jHgnPM5CsAwslSrDc'}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "claims": [
+          {
+            "claim_id": "dfbe27c6-f2bd-434c-bac2-0f227a52fe67",
+            "text": "The Prime Minister of India is Narendra Modi."
+          },
+          {
+            "claim_id": "bb89f3ea-3a4c-40ea-ace3-9ba813a4f538",
+            "text": "Narendra Modi has held the position of Prime Minister since May 26, 2014."
+          },
+          {
+            "claim_id": "e5e7143c-bc16-451f-8dcf-600bf285ea94",
+            "text": "Narendra Modi led the Bharatiya Janata Party to victory in the general elections in 2014."
+          },
+          {
+            "claim_id": "e81635b6-ae26-44e0-8e6b-0d650f6861fb",
+            "text": "Narendra Modi has been involved in various domestic initiatives since beginning his tenure as Prime Minister."
+          },
+          {
+            "claim_id": "63c23139-0560-43e6-bd9c-dfac8a2547aa",
+            "text": "Narendra Modi has been involved in various international initiatives since beginning his tenure as Prime Minister."
+          },
+          {
+            "claim_id": "88288a4e-d535-4e19-a49c-a95e9b66436a",
+            "text": "Political positions can change."
+          }
+        ]
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "claims": [
+          {
+            "claim_id": "858388c7-9ee3-4592-8996-8363a8d5da8e",
+            "text": "The error code provided is 402."
+          },
+          {
+            "claim_id": "27992a7a-2bd7-4805-9466-c40e9e97dc10",
+            "text": "The error message states that the request requires more credits."
+          },
+          {
+            "claim_id": "c946ca1e-08e3-44b9-89e8-baff0979907a",
+            "text": "The error message states that the request requires fewer max tokens."
+          },
+          {
+            "claim_id": "83dabb1b-a4a8-466c-b81f-507d2da48eeb",
+            "text": "The user requested up to 2048 tokens."
+          },
+          {
+            "claim_id": "842dde75-ce84-4196-888c-349d3791570f",
+            "text": "The user can only afford 1333 tokens."
+          },
+          {
+            "claim_id": "6820fab1-7f9f-46b0-a955-34ce04647968",
+            "text": "To increase the token allowance, users are instructed to visit a specific URL."
+          },
+          {
+            "claim_id": "5c075c49-08f5-498d-b404-7f14041346a3",
+            "text": "The URL provided for increasing credits is https://openrouter.ai/settings/credits."
+          },
+          {
+            "claim_id": "62e19aaf-7d1c-4b4e-a84a-598571051223",
+            "text": "The error response includes a user ID 'user_39Auv0KK88jHgnPM5CsAwslSrDc'."
+          }
+        ]
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "claims": [
+          {
+            "claim_id": "9858a492-5a79-453e-9dfa-222594dbf4a3",
+            "text": "The error code is 404."
+          },
+          {
+            "claim_id": "8fd0c82c-c33c-4549-80e2-19bb92ef8b21",
+            "text": "The error message states that no endpoints were found for google/gemini-2.0-flash-exp:free."
+          },
+          {
+            "claim_id": "c5ee48ea-4079-460d-8984-5f23e30fac17",
+            "text": "The user_id is user_39Auv0KK88jHgnPM5CsAwslSrDc."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "ae961721",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "GPT-4o (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "6049e3aa",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "cdb2adff",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "6ba80376",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "ae961721",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "GPT-4o (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.8,
+        "reasons": [
+          "Strong agreement: 3 models support this"
+        ]
+      },
+      {
+        "cluster_id": "6ba80376",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.65,
+        "reasons": [
+          "Moderate agreement: 2 models support this"
+        ]
+      },
+      {
+        "cluster_id": "6049e3aa",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      },
+      {
+        "cluster_id": "cdb2adff",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

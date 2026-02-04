@@ -1,0 +1,108 @@
+{
+  "id": "54f98757-ce4a-43f6-a710-c92c13720870",
+  "timestamp": "2026-02-04T08:28:19.477586",
+  "state": {
+    "raw_input": "Test query",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "Test query"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "Test query"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "response_text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "response_text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "claims": [
+          {
+            "claim_id": "8b82196b-752e-492c-b5b4-ac548b6b4ce9",
+            "text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "claims": [
+          {
+            "claim_id": "0500c3d0-f42b-4012-b8ef-137780484230",
+            "text": "Error (openrouter): Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "6d94cd05",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "GPT-4o (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "6d94cd05",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "GPT-4o (OR)",
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.65,
+        "reasons": [
+          "Moderate agreement: 2 models support this"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "ee96dbdf-f717-4ccd-a740-dda3cace0934",
+  "timestamp": "2026-02-04T01:32:07.620858",
+  "state": {
+    "raw_input": "test",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "general_query",
+      "domain": "technology",
+      "explicit_constraints": {},
+      "inferred_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "normalized_prompt": "test"
+    },
+    "locked_context": {
+      "locked_constraints": {
+        "language": "english",
+        "depth": "intermediate"
+      },
+      "constraint_hash": "355881f28823",
+      "normalized_prompt_data": {
+        "intent": "general_query",
+        "domain": "technology",
+        "explicit_constraints": {},
+        "inferred_constraints": {
+          "language": "english",
+          "depth": "intermediate"
+        },
+        "normalized_prompt": "test"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "gpt-4o",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "response_text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+        "token_count": 0
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "gpt-4o",
+        "claims": [
+          {
+            "claim_id": "17c2e9fa-8c10-409c-a420-31cebef7ec9c",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      },
+      {
+        "model_id": "claude-3.5-sonnet",
+        "claims": [
+          {
+            "claim_id": "c65979bc-24bf-44c2-bd55-1ca4cff1739d",
+            "text": "Error: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}"
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "02961bfd",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "gemini-2.0-flash"
+        ]
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "02961bfd",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "claude-3.5-sonnet",
+          "gpt-4o"
+        ],
+        "conflicting_models": [
+          "gemini-2.0-flash"
+        ],
+        "confidence_score": 0.55,
+        "reasons": [
+          "Moderate agreement: 2 models support this",
+          "Conflict detected: 1 models disagree"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed - review individual responses"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Unknown error"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

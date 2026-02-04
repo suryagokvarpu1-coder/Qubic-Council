@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE QUBIC | AI Consensus Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=JetBrains+Mono:wght@100;400&display=swap');
+
+        body,
+        html {
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- THE GEOMETRIC BACKGROUND --- */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #000 100%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- TYPOGRAPHY EFFECTS --- */
+        .outline-text {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            font-weight: 800;
+            text-transform: uppercase;
+            position: absolute;
+            white-space: nowrap;
+            font-size: 15vw;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.4em;
+        }
+
+        .execute-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .execute-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+
+        .execute-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: 320px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(30px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 99;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar.open+.sidebar-toggle {
+            right: 340px;
+        }
+
+        /* --- MODEL CARDS --- */
+        .model-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .model-card.active {
+            border-color: rgba(100, 200, 100, 0.5);
+            background: rgba(100, 200, 100, 0.05);
+        }
+
+        .model-card.inactive {
+            opacity: 0.4;
+        }
+
+        /* --- LOADING ANIMATION --- */
+        .loading-spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- OUTPUT AREA --- */
+        .output-area {
+            min-height: 200px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .output-area::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .output-area::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+
+        /* --- CONFIDENCE BAR --- */
+        .confidence-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d, #6bff6b);
+            transition: width 0.5s ease;
+        }
+
+        /* --- MODEL RESPONSE ACCORDION --- */
+        .model-response {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .model-response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .model-response-header:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .model-response-body {
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: none;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .model-response.expanded .model-response-body {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container">
+        <canvas id="meshCanvas"></canvas>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <div class="outline-text" style="top: 10%; left: -5%;">QUANTUM</div>
+    <div class="outline-text" style="bottom: 10%; right: -5%;">CONSENSUS</div>
+
+    <!-- SIDEBAR FOR COUNCIL CONFIGURATION -->
+    <div id="sidebar" class="sidebar">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <h3 class="text-lg font-bold">COUNCIL CONFIG</h3>
+                <button onclick="toggleSidebar()" class="text-white/50 hover:text-white">&times;</button>
+            </div>
+
+            <div class="mb-8">
+                <label class="mono text-[10px] text-white/50 block mb-3">ACTIVE MODELS</label>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-3xl font-bold" id="activeModelCount">4</span>
+                    <div class="flex gap-2">
+                        <button onclick="adjustCouncilSize(-1)"
+                            class="w-10 h-10 border border-white/20 rounded hover:bg-white/10 transition-all">−</button>
+                        <button onclick="adjustCouncilSize(1)"
+                            class="w-10 h-10 border border-white/20 rounded hover:bg-white/10 transition-all">+</button>
+                    </div>
+                </div>
+                <p class="text-xs text-white/40">Min: 1, Max: 4 models</p>
+            </div>
+
+            <!-- API KEYS SECTION -->
+            <div class="mb-8 pt-6 border-t border-white/10">
+                <label class="mono text-[10px] text-white/50 block mb-3">API CONFIGURATION</label>
+
+                <!-- OpenRouter API Key -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-xs font-semibold text-white/80">OpenRouter API Key</label>
+                        <span id="openrouterStatus"
+                            class="mono text-[10px] text-white/40 px-2 py-0.5 rounded bg-white/5">Not configured</span>
+                    </div>
+                    <input type="password" id="openrouterKeyInput" placeholder="sk-or-v1-..."
+                        class="w-full bg-white/5 border border-white/20 p-2 text-xs rounded outline-none focus:border-white/50 transition-all text-white font-mono">
+                    <p class="text-[10px] text-white/30 mt-1">Access GPT-4o, Claude, Gemini & more via <a
+                            href="https://openrouter.ai/keys" target="_blank"
+                            class="text-blue-400 hover:underline">openrouter.ai</a></p>
+                </div>
+
+                <!-- Groq API Key -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="text-xs font-semibold text-white/80">Groq API Key</label>
+                        <span id="groqStatus" class="mono text-[10px] text-white/40 px-2 py-0.5 rounded bg-white/5">Not
+                            configured</span>
+                    </div>
+                    <input type="password" id="groqKeyInput" placeholder="gsk_..."
+                        class="w-full bg-white/5 border border-white/20 p-2 text-xs rounded outline-none focus:border-white/50 transition-all text-white font-mono">
+                    <p class="text-[10px] text-white/30 mt-1">Ultra-fast Llama inference via <a
+                            href="https://console.groq.com/keys" target="_blank"
+                            class="text-blue-400 hover:underline">console.groq.com</a></p>
+                </div>
+
+                <!-- Save Button -->
+                <button onclick="saveApiKeys()" id="saveKeysBtn"
+                    class="w-full bg-white text-black text-xs font-bold py-2 rounded hover:bg-gray-200 transition-all">
+                    SAVE API KEYS
+                </button>
+
+                <!-- Feedback -->
+                <div id="keysFeedback" class="mt-3 text-[10px] mono hidden">
+                    <div class="flex items-center gap-2">
+                        <span id="feedbackIndicator" class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <span id="feedbackText">Keys saved successfully</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3" id="modelList">
+                <!-- Model cards will be rendered here -->
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/10">
+                <label class="mono text-[10px] text-white/50 block mb-3">API STATUS</label>
+                <div id="apiStatus" class="text-sm">
+                    <span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"></span>
+                    Checking...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="sidebarToggle" class="sidebar-toggle" onclick="toggleSidebar()">⚙</button>
+
+    <!-- MAIN CONTENT -->
+    <div class="relative z-10">
+        <nav class="p-10 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 border border-white/20 flex items-center justify-center">
+                    <span class="text-xs">Q</span>
+                </div>
+                <h1 class="text-sm font-bold tracking-[0.5em] uppercase">The QUBIC</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <span id="councilBadge" class="mono text-[10px] text-white/50">4 MODELS ACTIVE</span>
+                <button onclick="toggleSidebar()"
+                    class="mono text-[8px] border border-white/10 px-4 py-2 hover:bg-white hover:text-black transition-all">COUNCIL_CONFIG</button>
+            </div>
+        </nav>
+
+        <main class="max-w-6xl mx-auto px-10 pt-10">
+            <header class="mb-16">
+                <h2 class="text-6xl md:text-[100px] font-extrabold tracking-tighter leading-none mb-8">
+                    UNBIASED<br><span class="opacity-50 italic font-light">LOGIC.</span>
+                </h2>
+
+                <div class="flex flex-col md:flex-row gap-4 items-end">
+                    <div class="w-full max-w-2xl relative">
+                        <input type="text" id="queryInput" placeholder="ASK THE COUNCIL..."
+                            class="w-full bg-white/5 border border-white/10 p-6 text-xl outline-none focus:bg-white/10 focus:border-white/30 transition-all font-light"
+                            onkeypress="if(event.key === 'Enter') executeQuery()">
+                    </div>
+                    <button id="executeBtn" class="execute-btn h-[74px]" onclick="executeQuery()">
+                        <span id="btnText">EXECUTE</span>
+                        <div id="btnSpinner" class="loading-spinner hidden"></div>
+                    </button>
+                </div>
+            </header>
+
+            <!-- OUTPUT SECTION -->
+            <div id="outputSection" class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-20">
+                <!-- MAIN SYNTHESIS PANEL -->
+                <div class="md:col-span-2 glass-panel p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <span class="mono opacity-40 uppercase">Synthesis View</span>
+                        <span id="modelCountBadge" class="text-white/20">—</span>
+                    </div>
+
+                    <!-- Initial State -->
+                    <div id="initialState" class="text-center py-16">
+                        <div class="text-6xl mb-4 opacity-20">⬡</div>
+                        <p class="text-white/30 text-lg">Enter a query to consult the AI Council</p>
+                        <p class="mono text-[10px] text-white/20 mt-4">AWAITING INPUT...</p>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loadingState" class="hidden text-center py-16">
+                        <div class="loading-spinner mx-auto mb-6" style="width: 48px; height: 48px;"></div>
+                        <p class="text-white/50 text-lg mb-2">Consulting the Council...</p>
+                        <p id="loadingStatus" class="mono text-[10px] text-white/30">INITIALIZING...</p>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="errorState" class="hidden">
+                        <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-6">
+                            <p class="text-red-400 font-semibold mb-2">Error</p>
+                            <p id="errorMessage" class="text-white/70"></p>
+                        </div>
+                    </div>
+
+                    <!-- Result State -->
+                    <div id="resultState" class="hidden output-area">
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="mono text-[10px] text-white/40">CONFIDENCE</span>
+                                <span id="confidenceValue" class="mono text-[10px]">0%</span>
+                            </div>
+                            <div class="confidence-bar">
+                                <div id="confidenceFill" class="confidence-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <div id="finalAnswer" class="text-xl font-light leading-relaxed mb-8"></div>
+
+                        <div class="border-t border-white/10 pt-6">
+                            <span class="mono text-[10px] text-white/40 block mb-4">INDIVIDUAL RESPONSES</span>
+                            <div id="modelResponses"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS PANEL -->
+                <div class="glass-panel p-6">
+                    <span class="mono opacity-40 uppercase block mb-6">Council Status</span>
+
+                    <div id="statsPanel" class="space-y-6">
+                        <div>
+                            <span class="mono text-[10px] text-white/40 block mb-2">MODELS QUERIED</span>
+                            <p id="statModels" class="text-2xl font-bold">—</p>
+                        </div>
+                        <div>
+                            <span class="mono text-[10px] text-white/40 block mb-2">CLAIMS EXTRACTED</span>
+                            <p id="statClaims" class="text-2xl font-bold">—</p>
+                        </div>
+                        <div>
+                            <span class="mono text-[10px] text-white/40 block mb-2">AGREEMENT CLUSTERS</span>
+                            <p id="statClusters" class="text-2xl font-bold">—</p>
+                        </div>
+                        <div>
+                            <span class="mono text-[10px] text-white/40 block mb-2">PROCESSING TIME</span>
+                            <p id="statTime" class="text-2xl font-bold">—</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-white/10">
+                        <span class="mono text-[10px] text-white/40 block mb-4">ACTIVE PROVIDERS</span>
+                        <div id="providerStatus" class="space-y-3">
+                            <!-- Provider status will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // ===== CONFIGURATION =====
+        const API_BASE = 'http://localhost:8000';
+        const ALL_MODELS = [
+            { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI', color: '#10a37f' },
+            { id: 'claude-3.5-sonnet', name: 'Claude 3.5 Sonnet', provider: 'Anthropic', color: '#cc785c' },
+            { id: 'gemini-2.0-flash', name: 'Gemini 2.0 Flash', provider: 'Google', color: '#4285f4' },
+            { id: 'llama-3.3-70b-groq', name: 'Llama 3.3 70B', provider: 'Groq', color: '#f55036' }
+        ];
+
+        // ===== STATE =====
+        let activeModels = [...ALL_MODELS]; // All models active by default
+        let councilSize = 4;
+        let isLoading = false;
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderModelList();
+            updateCouncilBadge();
+            checkApiStatus();
+            renderProviderStatus();
+            fetchKeyStatus();  // Fetch and display current API key configuration
+        });
+
+        // ===== SIDEBAR FUNCTIONS =====
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.getElementById('sidebarToggle');
+            sidebar.classList.toggle('open');
+        }
+
+        function adjustCouncilSize(delta) {
+            const newSize = councilSize + delta;
+            if (newSize >= 1 && newSize <= ALL_MODELS.length) {
+                councilSize = newSize;
+                activeModels = ALL_MODELS.slice(0, councilSize);
+                document.getElementById('activeModelCount').textContent = councilSize;
+                renderModelList();
+                updateCouncilBadge();
+            }
+        }
+
+        function toggleModel(modelId) {
+            const idx = activeModels.findIndex(m => m.id === modelId);
+            if (idx > -1) {
+                if (activeModels.length > 1) {
+                    activeModels.splice(idx, 1);
+                    councilSize = activeModels.length;
+                }
+            } else {
+                const model = ALL_MODELS.find(m => m.id === modelId);
+                if (model) {
+                    activeModels.push(model);
+                    councilSize = activeModels.length;
+                }
+            }
+            document.getElementById('activeModelCount').textContent = councilSize;
+            renderModelList();
+            updateCouncilBadge();
+        }
+
+        function renderModelList() {
+            const container = document.getElementById('modelList');
+            container.innerHTML = ALL_MODELS.map(model => {
+                const isActive = activeModels.some(m => m.id === model.id);
+                return `
+                    <div class="model-card ${isActive ? 'active' : 'inactive'}" onclick="toggleModel('${model.id}')">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-semibold text-sm">${model.name}</p>
+                                <p class="mono text-[10px] text-white/40">${model.provider}</p>
+                            </div>
+                            <div class="w-3 h-3 rounded-full" style="background: ${isActive ? model.color : 'rgba(255,255,255,0.2)'}"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateCouncilBadge() {
+            document.getElementById('councilBadge').textContent = `${councilSize} MODEL${councilSize > 1 ? 'S' : ''} ACTIVE`;
+        }
+
+        function renderProviderStatus() {
+            const container = document.getElementById('providerStatus');
+            container.innerHTML = ALL_MODELS.map(model => {
+                const isActive = activeModels.some(m => m.id === model.id);
+                return `
+                    <div class="flex justify-between items-center">
+                        <span class="mono text-[10px]">${model.provider}</span>
+                        <span class="mono text-[10px] ${isActive ? 'text-green-400' : 'text-white/30'}">${isActive ? 'Active' : 'Idle'}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ===== API FUNCTIONS =====
+        async function checkApiStatus() {
+            const statusEl = document.getElementById('apiStatus');
+            try {
+                const res = await fetch(`${API_BASE}/api/status`);
+                if (res.ok) {
+                    statusEl.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"></span>Connected';
+                } else {
+                    statusEl.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-yellow-500 mr-2"></span>Degraded';
+                }
+            } catch (e) {
+                statusEl.innerHTML = '<span class="inline-block w-2 h-2 rounded-full bg-red-500 mr-2"></span>Offline';
+            }
+        }
+
+        async function executeQuery() {
+            if (isLoading) return;
+
+            const input = document.getElementById('queryInput');
+            const query = input.value.trim();
+
+            if (!query) {
+                input.focus();
+                return;
+            }
+
+            // Set loading state
+            isLoading = true;
+            showState('loading');
+            updateLoadingStatus('CONNECTING TO COUNCIL...');
+
+            const startTime = Date.now();
+            const btn = document.getElementById('executeBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            btn.disabled = true;
+            btnText.classList.add('hidden');
+            btnSpinner.classList.remove('hidden');
+
+            try {
+                updateLoadingStatus('QUERYING MODELS...');
+
+                const response = await fetch(`${API_BASE}/run`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: query,
+                        model_count: councilSize  // Send council size to backend
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                updateLoadingStatus('SYNTHESIZING CONSENSUS...');
+                const data = await response.json();
+                const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+
+                renderResult(data, elapsed);
+                showState('result');
+
+            } catch (error) {
+                console.error('Query failed:', error);
+                document.getElementById('errorMessage').textContent = error.message;
+                showState('error');
+            } finally {
+                isLoading = false;
+                btn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnSpinner.classList.add('hidden');
+            }
+        }
+
+        // Fetch and display the current API key status
+        async function fetchKeyStatus() {
+            try {
+                const res = await fetch(`${API_BASE}/settings/keys/status`);
+                const data = await res.json();
+
+                // Update OpenRouter status
+                const openrouterStatus = document.getElementById('openrouterStatus');
+                if (data.providers?.openrouter?.configured) {
+                    openrouterStatus.textContent = '✓ Connected';
+                    openrouterStatus.className = 'mono text-[10px] text-green-400 px-2 py-0.5 rounded bg-green-500/20';
+                } else {
+                    openrouterStatus.textContent = 'Not configured';
+                    openrouterStatus.className = 'mono text-[10px] text-white/40 px-2 py-0.5 rounded bg-white/5';
+                }
+
+                // Update Groq status
+                const groqStatus = document.getElementById('groqStatus');
+                if (data.providers?.groq?.configured) {
+                    groqStatus.textContent = '✓ Connected';
+                    groqStatus.className = 'mono text-[10px] text-green-400 px-2 py-0.5 rounded bg-green-500/20';
+                } else {
+                    groqStatus.textContent = 'Not configured';
+                    groqStatus.className = 'mono text-[10px] text-white/40 px-2 py-0.5 rounded bg-white/5';
+                }
+            } catch (e) {
+                console.error('Failed to fetch key status:', e);
+            }
+        }
+
+        async function saveApiKeys() {
+            const openrouterInput = document.getElementById('openrouterKeyInput');
+            const groqInput = document.getElementById('groqKeyInput');
+            const openrouterKey = openrouterInput.value.trim();
+            const groqKey = groqInput.value.trim();
+
+            // At least one key should be provided
+            if (!openrouterKey && !groqKey) {
+                showKeysFeedback('Please enter at least one API key', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('saveKeysBtn');
+            btn.disabled = true;
+            btn.textContent = "SAVING...";
+
+            try {
+                const payload = {};
+                if (openrouterKey) payload.openrouter_api_key = openrouterKey;
+                if (groqKey) payload.groq_api_key = groqKey;
+
+                const res = await fetch(`${API_BASE}/settings/keys`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+
+                // Show success feedback
+                const providers = data.available_providers || [];
+                const providerNames = providers.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' + ');
+
+                if (providers.length > 0) {
+                    showKeysFeedback(`Connected: ${providerNames}`, 'success');
+                } else {
+                    showKeysFeedback('Keys saved successfully', 'success');
+                }
+
+                // Clear inputs for security
+                if (openrouterKey) openrouterInput.value = '';
+                if (groqKey) groqInput.value = '';
+
+                // Update placeholder text
+                if (openrouterKey) openrouterInput.placeholder = 'Key saved (enter new to replace)';
+                if (groqKey) groqInput.placeholder = 'Key saved (enter new to replace)';
+
+                // Refresh status display
+                await fetchKeyStatus();
+
+            } catch (e) {
+                console.error('Failed to save API keys:', e);
+                showKeysFeedback('Failed to save API keys', 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "SAVE API KEYS";
+            }
+        }
+
+        function showKeysFeedback(message, type) {
+            const feedback = document.getElementById('keysFeedback');
+            const indicator = document.getElementById('feedbackIndicator');
+            const text = document.getElementById('feedbackText');
+
+            feedback.classList.remove('hidden');
+            text.textContent = message;
+
+            if (type === 'success') {
+                indicator.className = 'w-2 h-2 rounded-full bg-green-500';
+                text.className = 'text-green-400';
+            } else if (type === 'error') {
+                indicator.className = 'w-2 h-2 rounded-full bg-red-500';
+                text.className = 'text-red-400';
+            } else {
+                indicator.className = 'w-2 h-2 rounded-full bg-yellow-500';
+                text.className = 'text-yellow-400';
+            }
+
+            // Auto-hide after 3 seconds for success messages
+            if (type === 'success') {
+                setTimeout(() => {
+                    feedback.classList.add('hidden');
+                }, 3000);
+            }
+        }
+
+        function showState(state) {
+            document.getElementById('initialState').classList.add('hidden');
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.add('hidden');
+            document.getElementById('resultState').classList.add('hidden');
+
+            document.getElementById(`${state}State`).classList.remove('hidden');
+        }
+
+        function updateLoadingStatus(text) {
+            document.getElementById('loadingStatus').textContent = text;
+        }
+
+        function renderResult(data, elapsed) {
+            // Confidence
+            const confidence = data.consensus?.confidence || 0;
+            const confPercent = Math.round(confidence * 100);
+            document.getElementById('confidenceValue').textContent = `${confPercent}%`;
+            document.getElementById('confidenceFill').style.width = `${confPercent}%`;
+
+            // Final Answer
+            const answer = data.consensus?.final_answer || 'No synthesis available.';
+            document.getElementById('finalAnswer').innerHTML = formatAnswer(answer);
+
+            // Stats
+            const modelCount = data.model_responses?.length || 0;
+            const claimCount = data.all_claims?.reduce((sum, c) => sum + c.claims.length, 0) || 0;
+            const clusterCount = data.agreement_clusters?.length || 0;
+
+            document.getElementById('statModels').textContent = modelCount;
+            document.getElementById('statClaims').textContent = claimCount;
+            document.getElementById('statClusters').textContent = clusterCount;
+            document.getElementById('statTime').textContent = `${elapsed}s`;
+            document.getElementById('modelCountBadge').textContent = `01 ——— 0${modelCount}`;
+
+            // Model Responses
+            const responsesContainer = document.getElementById('modelResponses');
+            responsesContainer.innerHTML = (data.model_responses || []).map((resp, i) => {
+                const model = ALL_MODELS.find(m => m.id === resp.model_id) || { name: resp.model_id, color: '#888' };
+                return `
+                    <div class="model-response" onclick="this.classList.toggle('expanded')">
+                        <div class="model-response-header">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 rounded-full" style="background: ${model.color}"></div>
+                                <span class="font-medium">${model.name || resp.model_id}</span>
+                            </div>
+                            <span class="mono text-[10px] text-white/40">${resp.token_count} tokens</span>
+                        </div>
+                        <div class="model-response-body text-white/70">
+                            ${formatAnswer(resp.response_text)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Update provider status
+            renderProviderStatus();
+        }
+
+        function formatAnswer(text) {
+            // Basic markdown-like formatting
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code class="bg-white/10 px-1 rounded">$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+
+        // ===== CANVAS ANIMATION =====
+        const canvas = document.getElementById('meshCanvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        const maxDist = 150;
+        const mouse = { x: null, y: null };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        function initPoints() {
+            points = [];
+            const count = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < count; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = 'rgba(255,255,255,0.15)';
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+
+            for (let i = 0; i < points.length; i++) {
+                let p = points[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < points.length; j++) {
+                    let p2 = points[j];
+                    let dist = Math.sqrt((p.x - p2.x) ** 2 + (p.y - p2.y) ** 2);
+                    if (dist < maxDist) {
+                        ctx.lineWidth = 1 - dist / maxDist;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+
+                if (mouse.x) {
+                    let mDist = Math.sqrt((p.x - mouse.x) ** 2 + (p.y - mouse.y) ** 2);
+                    if (mDist < 200) {
+                        ctx.strokeStyle = `rgba(255,255,255,${1 - mDist / 200})`;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', resize);
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        resize();
+        draw();
+    </script>
+</body>
+
+</html>

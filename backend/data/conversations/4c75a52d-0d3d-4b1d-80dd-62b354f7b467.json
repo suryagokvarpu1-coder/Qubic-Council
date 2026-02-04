@@ -1,0 +1,223 @@
+{
+  "id": "4c75a52d-0d3d-4b1d-80dd-62b354f7b467",
+  "timestamp": "2026-02-04T09:12:08.433625",
+  "state": {
+    "raw_input": "who is the president of india",
+    "conversation_id": null,
+    "normalized": {
+      "intent": "explain_concept",
+      "domain": "politics",
+      "explicit_constraints": {},
+      "inferred_constraints": {},
+      "normalized_prompt": "Who is the current president of India?"
+    },
+    "locked_context": {
+      "locked_constraints": {},
+      "constraint_hash": "44136fa355b3",
+      "normalized_prompt_data": {
+        "intent": "explain_concept",
+        "domain": "politics",
+        "explicit_constraints": {},
+        "inferred_constraints": {},
+        "normalized_prompt": "Who is the current president of India?"
+      }
+    },
+    "model_responses": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "response_text": "As of October 2023, the current president of India is Droupadi Murmu. She took office on July 25, 2022.",
+        "token_count": 19
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "response_text": "Error (openrouter): Error code: 402 - {'error': {'message': 'This request requires more credits, or fewer max_tokens. You requested up to 2048 tokens, but can only afford 1324. To increase, visit https://openrouter.ai/settings/credits and upgrade to a paid account', 'code': 402, 'metadata': {'provider_name': None}}, 'user_id': 'user_39Auv0KK88jHgnPM5CsAwslSrDc'}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "response_text": "Error (openrouter): Error code: 404 - {'error': {'message': 'No endpoints found for google/gemini-2.0-flash-exp:free.', 'code': 404}, 'user_id': 'user_39Auv0KK88jHgnPM5CsAwslSrDc'}",
+        "token_count": 0
+      },
+      {
+        "model_id": "Llama 3.3 70B",
+        "response_text": "The current president of India is Droupadi Murmu. She took office on July 25, 2022.",
+        "token_count": 15
+      }
+    ],
+    "all_claims": [
+      {
+        "model_id": "GPT-4o (OR)",
+        "claims": [
+          {
+            "claim_id": "c374143b-7fc6-433c-a258-f0917a7ef84c",
+            "text": "As of October 2023, the current president of India is Droupadi Murmu."
+          },
+          {
+            "claim_id": "d09450ec-941c-4e3b-a26b-da9f3876bc32",
+            "text": "Droupadi Murmu took office on July 25, 2022."
+          }
+        ]
+      },
+      {
+        "model_id": "Claude 3.5 Sonnet (OR)",
+        "claims": [
+          {
+            "claim_id": "ecb4deae-6631-4032-9083-baf9226f05e5",
+            "text": "The error code is 402."
+          },
+          {
+            "claim_id": "97429efa-9f85-4ae1-b5cb-90c0c5840824",
+            "text": "The error message states that the request requires more credits."
+          },
+          {
+            "claim_id": "f4daf04b-2f02-42ad-b5fa-0aff76d2798d",
+            "text": "The error message states that the maximum tokens requested is 2048."
+          },
+          {
+            "claim_id": "c241ff47-54ac-454a-9c23-55e19b0228d9",
+            "text": "The user can only afford 1324 tokens."
+          },
+          {
+            "claim_id": "7fb7af5d-570e-40e8-b2bc-45e5f6677661",
+            "text": "The error message provides a URL to visit for upgrading to a paid account."
+          }
+        ]
+      },
+      {
+        "model_id": "Gemini 2.0 Flash (OR)",
+        "claims": [
+          {
+            "claim_id": "97eaff62-035a-435e-bc0e-b926bede4bf6",
+            "text": "The error code is 404."
+          },
+          {
+            "claim_id": "b806805f-a58c-4dd4-baf5-cf5e0fcec942",
+            "text": "The error message indicates that no endpoints were found for google/gemini-2.0-flash-exp:free."
+          },
+          {
+            "claim_id": "cbcdfea6-bffc-42b2-8851-8473f2c4a12f",
+            "text": "The user ID associated with the error is user_39Auv0KK88jHgnPM5CsAwslSrDc."
+          }
+        ]
+      },
+      {
+        "model_id": "Llama 3.3 70B",
+        "claims": [
+          {
+            "claim_id": "48d9cb5c-89f4-4783-a8f3-75e99fb35e2b",
+            "text": "The current president of India is Droupadi Murmu."
+          },
+          {
+            "claim_id": "d4471443-7dd7-47d5-b15d-665efb097ded",
+            "text": "Droupadi Murmu took office on July 25, 2022."
+          }
+        ]
+      }
+    ],
+    "peer_reviews": [],
+    "agreement_clusters": [
+      {
+        "cluster_id": "61e98c4f",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)",
+          "Llama 3.3 70B"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "f12b0bdd",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "03d40198",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": []
+      },
+      {
+        "cluster_id": "a66b388e",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)"
+        ],
+        "conflicting_models": []
+      }
+    ],
+    "scored_clusters": [
+      {
+        "cluster_id": "61e98c4f",
+        "canonical_claim": "Topic: General",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)",
+          "Claude 3.5 Sonnet (OR)",
+          "GPT-4o (OR)",
+          "Llama 3.3 70B"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.8,
+        "reasons": [
+          "Strong agreement: 4 models support this"
+        ]
+      },
+      {
+        "cluster_id": "f12b0bdd",
+        "canonical_claim": "Topic: Frontend",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      },
+      {
+        "cluster_id": "03d40198",
+        "canonical_claim": "Topic: Security",
+        "supporting_models": [
+          "Claude 3.5 Sonnet (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      },
+      {
+        "cluster_id": "a66b388e",
+        "canonical_claim": "Topic: Deployment",
+        "supporting_models": [
+          "Gemini 2.0 Flash (OR)"
+        ],
+        "conflicting_models": [],
+        "confidence_score": 0.5,
+        "reasons": [
+          "Single model claim - lower confidence"
+        ]
+      }
+    ],
+    "consensus": {
+      "final_answer": "The council was unable to reach a synthesis. Please review individual model responses.",
+      "confidence": 0.3,
+      "uncertain_areas": [
+        "Synthesis failed"
+      ],
+      "reasoning_trace": [
+        {
+          "step": "error",
+          "details": "Synthesis failed"
+        }
+      ]
+    },
+    "errors": []
+  }
+}

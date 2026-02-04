@@ -7,3 +7,7 @@ numpy
 scikit-learn
 openai
 httpx
+
+# Testing dependencies
+pytest
+pytest-asyncio

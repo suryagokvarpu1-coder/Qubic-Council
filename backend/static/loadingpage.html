@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Qubic | Synchronizing...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&family=JetBrains+Mono:wght@100&display=swap");
+
+    body {
+      background-color: #000;
+      margin: 0;
+      overflow: hidden;
+      font-family: "Space Grotesk", sans-serif;
+      color: #fff;
+    }
+
+    /* --- LOADING OVERLAY --- */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    /* 3D Cube Animation */
+    .cube-wrapper {
+      width: 100px;
+      height: 100px;
+      perspective: 600px;
+      margin-bottom: 40px;
+    }
+
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateCube 4s infinite linear;
+    }
+
+    .face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Cube Face Positioning */
+    .front {
+      transform: translateZ(50px);
+    }
+
+    .back {
+      transform: rotateY(180deg) translateZ(50px);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(50px);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(50px);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(50px);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(50px);
+    }
+
+    @keyframes rotateCube {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+
+    /* Dynamic Progress Bar */
+    .progress-container {
+      width: 240px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      position: absolute;
+      height: 100%;
+      width: 0%;
+      background: #fff;
+      transition: width 0.4s ease;
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+    }
+
+    .status-text {
+      margin-top: 20px;
+      opacity: 0.4;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.2;
+      }
+
+      50% {
+        opacity: 0.6;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loader">
+    <div class="cube-wrapper">
+      <div class="cube">
+        <div class="face front"></div>
+        <div class="face back"></div>
+        <div class="face right"></div>
+        <div class="face left"></div>
+        <div class="face top"></div>
+        <div class="face bottom"></div>
+      </div>
+    </div>
+
+    <div class="mono mb-4 tracking-[0.8em]">The Qubic</div>
+
+    <div class="progress-container">
+      <div id="bar" class="progress-bar"></div>
+    </div>
+
+    <div id="status" class="mono status-text">INITIALIZING_CORE</div>
+  </div>
+
+  <div id="main-content" style="opacity: 0; transition: opacity 2s ease">
+    <div class="p-20 text-center">
+      <h1 class="text-6xl font-bold">WELCOME TO THE QUBIC</h1>
+      <p class="mono mt-10">System is now operational.</p>
+    </div>
+  </div>
+
+  <script>
+    const statusMsgs = [
+      "CONNECTING_TO_NODES",
+      "CROSS_REFERENCING_MODELS",
+      "ELIMINATING_HALLUCINATIONS",
+      "SYNTHESIZING_TRUTH",
+      "ACCESS_GRANTED",
+    ];
+
+    let progress = 0;
+    const bar = document.getElementById("bar");
+    const statusText = document.getElementById("status");
+    const loader = document.getElementById("loader");
+    const content = document.getElementById("main-content");
+
+    const interval = setInterval(() => {
+      progress += Math.random() * 15;
+
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        completeLoading();
+      }
+
+      bar.style.width = progress + "%";
+
+      // Update text based on progress
+      const msgIndex = Math.floor((progress / 100) * statusMsgs.length);
+      if (statusMsgs[msgIndex]) statusText.innerText = statusMsgs[msgIndex];
+    }, 400);
+
+    function completeLoading() {
+      setTimeout(() => {
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = "/mainpage";
+        }, 1000);
+      }, 500);
+    }
+  </script>
+</body>
+
+</html>
